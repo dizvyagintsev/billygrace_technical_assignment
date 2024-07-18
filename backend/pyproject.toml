@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "billygrace-technical-assignment"
+version = "0.1.0"
+description = ""
+authors = ["dizvyagintsev <dizvyagintsev@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.1"
+asyncpg = "^0.29.0"
+pandas = "^2.2.2"
+pytest = "^8.2.2"
+pytest-asyncio = "^0.23.8"
+mypy = "^1.10.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
