@@ -1,4 +1,3 @@
-// src/components/MetricsDataGrid.js
 import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import {useAuthContext} from "../../auth/useAuthContext";
@@ -45,12 +44,10 @@ export default function MetricsDataGrid({ event, dateRange }) {
   ];
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
         autoHeight
       />
-    </div>
   );
 }

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Container, Typography } from '@mui/material';
+import {Box, Container, Typography} from '@mui/material';
 import { useSettingsContext } from '../components/settings';
 import { Event } from '../api/api';
 import dayjs from 'dayjs';
 import Filters from "../components/filters/Filters";
 import MetricsDataGrid from "../components/metrics-data-grid/MetricsDataGrid";
+import BubbleChartComponent from "../components/buble-chart/BubleChart";
+import LineChartComponent from "../components/line-chart/LineChart";
 
 export default function Dashboard() {
   const { themeStretch } = useSettingsContext();
@@ -37,6 +39,23 @@ export default function Dashboard() {
           onDateRangeChange={handleDateRangeChange}
         />
         <MetricsDataGrid event={selectedEvent} dateRange={dateRange} />
+        <Typography variant="h2" component="h2" paragraph>
+          Plots
+        </Typography>
+        <LineChartComponent />
+        <BubbleChartComponent />
+        {/*<Box sx={{ mt: 3 }}>*/}
+        {/*  <Typography variant="h4" component="h2" paragraph>*/}
+        {/*    Line Chart*/}
+        {/*  </Typography>*/}
+        {/*  <LineChartComponent />*/}
+        {/*</Box>*/}
+        {/*<Box sx={{ mt: 3 }}>*/}
+        {/*  <Typography variant="h4" component="h2" paragraph>*/}
+        {/*    Bubble Chart*/}
+        {/*  </Typography>*/}
+        {/*  <BubbleChartComponent />*/}
+        {/*</Box>*/}
       </Container>
     </>
   );

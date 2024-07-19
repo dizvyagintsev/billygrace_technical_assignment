@@ -11,7 +11,7 @@ test_backend:
 	pytest backend/app
 
 test_backend_integration:
-	docker-compose run --rm backend bash -c "pytest app --integration"
+	docker-compose run --rm backend bash -c "pytest app --integration -vvv"
 	make down
 
 mypy:
