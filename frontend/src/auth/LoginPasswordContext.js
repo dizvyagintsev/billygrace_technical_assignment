@@ -74,6 +74,7 @@ export function AuthProvider({ children }) {
     email: credentials.email,
     displayName: "Demo User",
     role: "user for demo",
+    customerId: "23",
   }
 
   // LOGIN
