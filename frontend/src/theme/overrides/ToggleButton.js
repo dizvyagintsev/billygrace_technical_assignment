@@ -1,39 +1,36 @@
-import { alpha } from "@mui/material/styles";
+import { alpha } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
-const COLORS = ["primary", "secondary", "info", "success", "warning", "error"];
+const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'];
 
 export default function ToggleButton(theme) {
   const rootStyle = (ownerState) => {
-    const standardColor = ownerState.color === "standard";
+    const standardColor = ownerState.color === 'standard';
 
     const defaultStyle = {
       ...(standardColor && {
-        "&.Mui-selected": {
-          borderColor: "inherit",
+        '&.Mui-selected': {
+          borderColor: 'inherit',
         },
       }),
     };
 
     const colorStyle = COLORS.map((color) => ({
       ...(ownerState.color === color && {
-        "&:hover": {
+        '&:hover': {
           borderColor: alpha(theme.palette[color].main, 0.48),
-          backgroundColor: alpha(
-            theme.palette[color].main,
-            theme.palette.action.hoverOpacity
-          ),
+          backgroundColor: alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
         },
-        "&.Mui-selected": {
+        '&.Mui-selected': {
           borderColor: theme.palette[color].main,
         },
       }),
     }));
 
     const disabledState = {
-      "&.Mui-disabled": {
-        "&.Mui-selected": {
+      '&.Mui-disabled': {
+        '&.Mui-selected': {
           color: theme.palette.action.disabled,
           backgroundColor: theme.palette.action.selected,
           borderColor: theme.palette.action.disabledBackground,
@@ -59,7 +56,7 @@ export default function ToggleButton(theme) {
         },
         grouped: {
           margin: 4,
-          borderColor: "transparent !important",
+          borderColor: 'transparent !important',
           borderRadius: `${theme.shape.borderRadius}px !important`,
         },
       },

@@ -1,13 +1,13 @@
-import PropTypes from "prop-types";
-import { Link as RouterLink } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
 // @mui
-import { Box, Tooltip, Link, ListItemText } from "@mui/material";
+import { Box, Tooltip, Link, ListItemText } from '@mui/material';
 // locales
-import { useLocales } from "../../../locales";
+import { useLocales } from '../../../locales';
 //
-import Iconify from "../../iconify";
+import Iconify from '../../iconify';
 //
-import { StyledItem, StyledIcon, StyledDotIcon } from "./styles";
+import { StyledItem, StyledIcon, StyledDotIcon } from './styles';
 
 // ----------------------------------------------------------------------
 
@@ -19,14 +19,7 @@ NavItem.propTypes = {
   isExternalLink: PropTypes.bool,
 };
 
-export default function NavItem({
-  item,
-  depth,
-  open,
-  active,
-  isExternalLink,
-  ...other
-}) {
+export default function NavItem({ item, depth, open, active, isExternalLink, ...other }) {
   const { translate } = useLocales();
 
   const { title, path, icon, info, children, disabled, caption } = item;
@@ -34,13 +27,7 @@ export default function NavItem({
   const subItem = depth !== 1;
 
   const renderContent = (
-    <StyledItem
-      depth={depth}
-      active={active}
-      disabled={disabled}
-      caption={!!caption}
-      {...other}
-    >
+    <StyledItem depth={depth} active={active} disabled={disabled} caption={!!caption} {...other}>
       {icon && <StyledIcon>{icon}</StyledIcon>}
 
       {subItem && (
@@ -60,12 +47,12 @@ export default function NavItem({
         }
         primaryTypographyProps={{
           noWrap: true,
-          component: "span",
-          variant: active ? "subtitle2" : "body2",
+          component: 'span',
+          variant: active ? 'subtitle2' : 'body2',
         }}
         secondaryTypographyProps={{
           noWrap: true,
-          variant: "caption",
+          variant: 'caption',
         }}
       />
 
@@ -78,9 +65,7 @@ export default function NavItem({
       {!!children && (
         <Iconify
           width={16}
-          icon={
-            open ? "eva:arrow-ios-downward-fill" : "eva:arrow-ios-forward-fill"
-          }
+          icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
           sx={{ ml: 1, flexShrink: 0 }}
         />
       )}

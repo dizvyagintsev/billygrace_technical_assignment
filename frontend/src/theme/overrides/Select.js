@@ -1,5 +1,5 @@
 //
-import { InputSelectIcon } from "./CustomIcons";
+import { InputSelectIcon } from './CustomIcons';
 
 // ----------------------------------------------------------------------
 

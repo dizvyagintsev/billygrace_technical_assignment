@@ -1,5 +1,5 @@
 # Stage 1: Build the react application
-FROM node:16 AS build
+FROM node:21-alpine AS build
 
 # Set working directory
 WORKDIR /app
@@ -15,24 +15,18 @@ COPY . .
 
 ARG API_BASE_URL
 ENV REACT_APP_API_BASE_URL=$API_BASE_URL
-ENV GENERATE_SOURCEMAP=false
+ENV GENERATE_SOURCEMAP=true
 
 # Build the application
 RUN yarn build
 
-# Stage 2: Serve the react application
-FROM node:16 AS serve
-
-# Install serve globally
-RUN yarn global add serve
+# Stage 2: Serve the React application using nginx
+FROM nginx:alpine AS serve
 
 # Copy the build output from the build stage
-COPY --from=build /app/build /app/build
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose port 3000
-EXPOSE 3000
+COPY nginx.conf /etc/nginx/nginx.conf
 
-WORKDIR /app
-
-# Serve the application
-CMD ["serve", "-s", "build"]
+# Start nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]

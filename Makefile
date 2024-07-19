@@ -3,6 +3,9 @@ FRONTEND_DIR := ./frontend
 deploy:
 	docker-compose up --build -d
 
+deploy_backend:
+	docker-compose up --build -d backend
+
 down:
 	docker-compose down
 
@@ -10,8 +13,10 @@ test_backend:
 	pytest backend/app
 
 test_backend_integration:
-	docker-compose run --rm backend bash -c "pytest app --integration -vvv"
-	make down
+	pytest backend/app --integration -vvv
+
+test_e2e:
+	cd $(FRONTEND_DIR) && npx playwright test
 
 mypy:
 	mypy backend/app --config-file backend/mypy.ini

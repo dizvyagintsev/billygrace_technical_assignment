@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
-import { LazyMotion, m } from "framer-motion";
+import PropTypes from 'prop-types';
+import { LazyMotion, m } from 'framer-motion';
 
 // ----------------------------------------------------------------------
 
 // eslint-disable-next-line import/extensions
-const loadFeatures = () => import("./features.js").then((res) => res.default);
+const loadFeatures = () => import('./features.js').then((res) => res.default);
 
 MotionLazyContainer.propTypes = {
   children: PropTypes.node,
@@ -13,7 +13,7 @@ MotionLazyContainer.propTypes = {
 export default function MotionLazyContainer({ children }) {
   return (
     <LazyMotion strict features={loadFeatures}>
-      <m.div style={{ height: "100%" }}> {children} </m.div>
+      <m.div style={{ height: '100%' }}> {children} </m.div>
     </LazyMotion>
   );
 }

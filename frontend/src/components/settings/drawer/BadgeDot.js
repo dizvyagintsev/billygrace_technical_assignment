@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // @mui
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -16,9 +16,9 @@ export default function BadgeDot({ sx, ...other }) {
         right: 4,
         width: 8,
         height: 8,
-        borderRadius: "50%",
-        position: "absolute",
-        bgcolor: "error.main",
+        borderRadius: '50%',
+        position: 'absolute',
+        bgcolor: 'error.main',
         ...sx,
       }}
       {...other}

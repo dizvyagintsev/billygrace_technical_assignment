@@ -5,6 +5,7 @@ import asyncpg
 
 
 def dsn_from_env() -> str:
+    return "postgresql://postgres:mysecretpassword@localhost:5432/hu"
     return os.environ["POSTGRES_DSN"]
 
 

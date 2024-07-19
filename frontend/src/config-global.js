@@ -1,5 +1,5 @@
 // routes
-import { PATH_DASHBOARD } from "./routes/paths";
+import { PATH_DASHBOARD } from './routes/paths';
 
 // API
 export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;

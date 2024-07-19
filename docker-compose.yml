@@ -21,7 +21,7 @@ services:
       args:
         - API_BASE_URL=http://localhost:8080
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - backend
 
@@ -31,6 +31,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mysecretpassword
       POSTGRES_DB: hu
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backend/db_migrations:/docker-entrypoint-initdb.d

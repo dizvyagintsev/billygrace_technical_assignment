@@ -1,4 +1,4 @@
-import { alpha } from "@mui/material/styles";
+import { alpha } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
@@ -7,12 +7,12 @@ export default function Autocomplete(theme) {
     MuiAutocomplete: {
       styleOverrides: {
         root: {
-          "& span.MuiAutocomplete-tag": {
+          '& span.MuiAutocomplete-tag': {
             ...theme.typography.body2,
             width: 24,
             height: 24,
-            lineHeight: "24px",
-            textAlign: "center",
+            lineHeight: '24px',
+            textAlign: 'center',
             borderRadius: theme.shape.borderRadius,
             backgroundColor: alpha(theme.palette.grey[500], 0.16),
           },

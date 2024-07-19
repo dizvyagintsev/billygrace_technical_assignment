@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 // @mui
-import { Collapse } from "@mui/material";
+import { Collapse } from '@mui/material';
 // hooks
-import useActiveLink from "../../../hooks/useActiveLink";
+import useActiveLink from '../../../hooks/useActiveLink';
 //
-import NavItem from "./NavItem";
+import NavItem from './NavItem';
 
 // ----------------------------------------------------------------------
 

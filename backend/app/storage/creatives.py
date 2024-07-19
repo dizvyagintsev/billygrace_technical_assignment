@@ -1,23 +1,9 @@
 import datetime
 from dataclasses import dataclass
 from enum import Enum
-from typing import AsyncIterator
+from typing import AsyncIterator, List, Optional
 
 import asyncpg
-
-
-class Event(Enum):
-    AD_CALLS = "ad_calls"
-    ADD_TO_CART = "add_to_cart"
-    BEL_AFSPRAAK = "bel_afspraak"
-    CHECK_STOCK = "check_stock"
-    LANDINGPAGE_VISIT = "landingpage_visit"
-    ORDER_COMPLETED = "order_completed"
-    ORDER_COMPLETED_CV = "order_completed_cv"
-    PRODUCT_VIEW = "product_view"
-    SOLLICITATIE_VERZONDEN = "sollicitatie_verzonden"
-    SUBSCRIBE = "subscribe"
-    WINKEL_AFSPRAAK = "winkel_afspraak"
 
 
 @dataclass
@@ -27,7 +13,7 @@ class DateRange:
 
 
 @dataclass(frozen=True)
-class RawMetrics:
+class Metrics:
     ad_copy: str
     spend: float
     clicks: float
@@ -36,13 +22,41 @@ class RawMetrics:
     roas: float
 
 
+@dataclass
+class FilterOptions:
+    events: List[str]
+    date_range: Optional[DateRange] = None
+
+
+
 class Creatives:
     def __init__(self, db: asyncpg.pool.Pool):
         self.db = db
 
+    async def get_filter_options(self, customer_name: str) -> FilterOptions:
+        query = """
+        SELECT ev, MIN(date_column), MAX(date_column)
+        FROM creatives.pixel_event_integrated_data
+        WHERE customer_name = $1 group by ev;
+        """
+
+        async with self.db.acquire() as connection:
+            async with connection.transaction():
+                records = await connection.fetch(query, customer_name)
+                if not records:
+                    return FilterOptions(events=[], date_range=None)
+
+                events = [record['ev'] for record in records]
+                start_date = records[0]['min']
+                end_date = records[0]['max']
+                return FilterOptions(events=events, date_range=DateRange(start_date, end_date))
+
+
+
+
     async def fetch_metrics(
-        self, customer_name: str, event: Event, date_range: DateRange
-    ) -> AsyncIterator[RawMetrics]:
+        self, customer_name: str, event: str, date_range: DateRange
+    ) -> AsyncIterator[Metrics]:
         """
         Fetch metrics for a given customer, event and date range.
 
@@ -79,8 +93,10 @@ GROUP BY ad_copy;
                 async for record in connection.cursor(
                     query,
                     customer_name,
-                    event.value,
+                    event,
                     date_range.start,
                     date_range.end,
                 ):
-                    yield RawMetrics(**dict(record))
+                    yield Metrics(**dict(record))
+
+

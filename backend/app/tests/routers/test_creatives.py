@@ -7,7 +7,7 @@ from starlette.testclient import TestClient
 
 from app.dependencies import get_creatives_storage
 from app.main import app
-from app.storage.creatives import RawMetrics, DateRange, Event
+from app.storage.creatives import Metrics, DateRange, Event
 
 mocked_creatives_storage = MagicMock()
 app.dependency_overrides[get_creatives_storage] = lambda: mocked_creatives_storage
@@ -26,7 +26,7 @@ app.dependency_overrides[get_creatives_storage] = lambda: mocked_creatives_stora
             2,
             200,
             [
-                RawMetrics(
+                Metrics(
                     ad_copy="Ad copy",
                     spend=100,
                     clicks=100,
@@ -34,7 +34,7 @@ app.dependency_overrides[get_creatives_storage] = lambda: mocked_creatives_stora
                     sessions=1000,
                     roas=1.0,
                 ),
-                RawMetrics(
+                Metrics(
                     ad_copy="Ad copy 2",
                     spend=200,
                     clicks=200,
@@ -73,7 +73,7 @@ def test_get_creative_metrics(
     currency_sign: str,
     round_to: int,
     expected_status_code: int,
-    fetched_metrics: List[RawMetrics],
+    fetched_metrics: List[Metrics],
     expected_response: List[Dict],
 ):
     mocked_creatives_storage.fetch_metrics.return_value.__aiter__.return_value = (

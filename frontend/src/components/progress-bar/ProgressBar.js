@@ -1,7 +1,7 @@
-import { useEffect, useMemo } from "react";
-import NProgress from "nprogress";
+import { useEffect, useMemo } from 'react';
+import NProgress from 'nprogress';
 //
-import StyledProgressBar from "./styles";
+import StyledProgressBar from './styles';
 
 // ----------------------------------------------------------------------
 

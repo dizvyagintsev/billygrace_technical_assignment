@@ -1,40 +1,40 @@
-import { alpha } from "@mui/material/styles";
+import { alpha } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
-const COLORS = ["primary", "secondary", "info", "success", "warning", "error"];
+const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'];
 
 export default function ButtonGroup(theme) {
   const rootStyle = (ownerState) => {
-    const inheritColor = ownerState.color === "inherit";
+    const inheritColor = ownerState.color === 'inherit';
 
-    const containedVariant = ownerState.variant === "contained";
+    const containedVariant = ownerState.variant === 'contained';
 
-    const outlinedVariant = ownerState.variant === "outlined";
+    const outlinedVariant = ownerState.variant === 'outlined';
 
-    const textVariant = ownerState.variant === "text";
+    const textVariant = ownerState.variant === 'text';
 
-    const softVariant = ownerState.variant === "soft";
+    const softVariant = ownerState.variant === 'soft';
 
-    const horizontalOrientation = ownerState.orientation === "horizontal";
+    const horizontalOrientation = ownerState.orientation === 'horizontal';
 
-    const verticalOrientation = ownerState.orientation === "vertical";
+    const verticalOrientation = ownerState.orientation === 'vertical';
 
     const defaultStyle = {
-      "& .MuiButtonGroup-grouped": {
-        "&:not(:last-of-type)": {
+      '& .MuiButtonGroup-grouped': {
+        '&:not(:last-of-type)': {
           ...(!outlinedVariant && {
-            borderStyle: "solid",
+            borderStyle: 'solid',
             ...(inheritColor && {
               borderColor: alpha(theme.palette.grey[500], 0.32),
             }),
             // HORIZONTAL
             ...(horizontalOrientation && {
-              borderWidth: "0px 1px 0px 0px",
+              borderWidth: '0px 1px 0px 0px',
             }),
             // VERTICAL
             ...(verticalOrientation && {
-              borderWidth: "0px 0px 1px 0px",
+              borderWidth: '0px 0px 1px 0px',
             }),
           }),
         },
@@ -42,8 +42,8 @@ export default function ButtonGroup(theme) {
     };
 
     const colorStyle = COLORS.map((color) => ({
-      "& .MuiButtonGroup-grouped": {
-        "&:not(:last-of-type)": {
+      '& .MuiButtonGroup-grouped': {
+        '&:not(:last-of-type)': {
           ...(!outlinedVariant && {
             ...(ownerState.color === color && {
               // CONTAINED
@@ -65,8 +65,8 @@ export default function ButtonGroup(theme) {
     }));
 
     const disabledState = {
-      "& .MuiButtonGroup-grouped.Mui-disabled": {
-        "&:not(:last-of-type)": {
+      '& .MuiButtonGroup-grouped.Mui-disabled': {
+        '&:not(:last-of-type)': {
           borderColor: theme.palette.action.disabledBackground,
         },
       },

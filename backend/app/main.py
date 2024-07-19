@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from app.database import create_asyncpg_pool
-from app.routers import creatives
+from app.routers import creatives, account
 
 
 @asynccontextmanager
@@ -14,12 +14,11 @@ async def lifespan(app: FastAPI):
     await app.state.db_pool.close()
 
 
-app = FastAPI(lifespan=lifespan)
-app.include_router(creatives.router)
+app = FastAPI(lifespan=lifespan, )
 
 origins = [
     "http://localhost:3000",
-    # Add other origins if needed
+    "http://localhost:3033",
 ]
 
 app.add_middleware(
@@ -29,3 +28,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(creatives.router)
+app.include_router(account.router)

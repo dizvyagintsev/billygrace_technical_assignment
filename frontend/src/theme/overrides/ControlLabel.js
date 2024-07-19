@@ -11,7 +11,7 @@ export default function ControlLabel(theme) {
     },
     MuiFormHelperText: {
       defaultProps: {
-        component: "div",
+        component: 'div',
       },
       styleOverrides: {
         root: {

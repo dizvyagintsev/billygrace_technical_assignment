@@ -2,7 +2,7 @@ import datetime
 
 import pytest
 
-from app.storage.creatives import Creatives, Event, DateRange, RawMetrics
+from app.storage.creatives import Creatives, Event, DateRange, Metrics
 
 
 class TestCreatives:
@@ -19,7 +19,7 @@ class TestCreatives:
                 ),
             )
         } == {
-            RawMetrics(
+            Metrics(
                 ad_copy="['Experience the Future Today! 🚀 The all-new ProTech X5 "
                 "Smartwatch – Fitness, calls, music, and more on your wrist. "
                 "Grab yours now and get a FREE wireless charger!']",
@@ -29,7 +29,7 @@ class TestCreatives:
                 sessions=2517857.0,
                 roas=1438.7743316599651,
             ),
-            RawMetrics(
+            Metrics(
                 ad_copy="['Escape to Paradise 🌴 Book your dream vacation to Bali now "
                 "and enjoy an early bird discount of 20%. Adventure is just a "
                 "click away!']",
@@ -39,7 +39,7 @@ class TestCreatives:
                 sessions=521775.0,
                 roas=1510.0529327918287,
             ),
-            RawMetrics(
+            Metrics(
                 ad_copy="['Hungry? 🍕 Get your first bite of our delicious wood-fired "
                 "Margherita Pizza! Use code ‘FIRSTORDER’ for 10% off. Fast "
                 "delivery guaranteed. Order now!']",

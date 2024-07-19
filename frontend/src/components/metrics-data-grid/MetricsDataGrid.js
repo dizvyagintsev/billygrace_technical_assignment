@@ -1,82 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import { useAuthContext } from "../../auth/useAuthContext";
-import { getMetrics } from "../../api/api";
+import React, { useEffect, useState } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import PropTypes from 'prop-types';
+import { Alert } from '@mui/material';
+import axios from 'axios';
+import { API_BASE_URL } from '../../config-global';
 
 export default function MetricsDataGrid({ event, dateRange }) {
-  const [rows, setRows] = useState([]);
-  const { user } = useAuthContext();
+  const [rows_, setRows] = useState([]);
+  const [columns_, setColumns] = useState([]);
+  const [fetchError, setError] = useState(null);
+  const url = `${API_BASE_URL}/api/customer/23/creatives/${event}/metrics`;
 
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const data = await getMetrics(
-          user?.customerId,
-          event,
-          dateRange[0].format("YYYY-MM-DD"),
-          dateRange[1].format("YYYY-MM-DD")
-        );
-        const formattedData = data.map((item, index) => ({
-          id: index + 1,
-          ad_copy: item.ad_copy,
-          spend: item.spend,
-          clicks: item.clicks,
-          impressions: item.impressions,
-          sessions: item.sessions,
-          roas: item.roas,
-        }));
-        setRows(formattedData);
+        const response = await axios.get(url, {
+          params: {
+            start_date: dateRange[0].format('YYYY-MM-DD'),
+            end_date: dateRange[1].format('YYYY-MM-DD'),
+          },
+        });
+        setError(null);
+
+        const { rows, columns } = response.data;
+        setRows(rows);
+        setColumns(columns);
       } catch (error) {
-        console.error("There was an error fetching the data!", error);
+        setError('Failed to fetch metrics data. Please try again.');
       }
     };
-    void fetchMetrics();
-  }, [event, dateRange, user?.customerId]);
+    fetchMetrics();
+  }, [event, dateRange, url]);
 
-  const columns = [
-    {
-      field: "ad_copy",
-      headerName: "Ad Copy",
-      flex: 3,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "spend",
-      headerName: "Spend",
-      flex: 1,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "clicks",
-      headerName: "Clicks",
-      flex: 1,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "impressions",
-      headerName: "Impressions",
-      flex: 1,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "sessions",
-      headerName: "Sessions",
-      flex: 1,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "roas",
-      headerName: "ROAS",
-      flex: 1,
-      headerAlign: "center",
-      align: "center",
-    },
-  ];
+  if (fetchError) {
+    return <Alert severity="error">{fetchError}</Alert>;
+  }
 
-  return <DataGrid rows={rows} columns={columns} autoHeight />;
+  return <DataGrid rows={rows_} columns={columns_} autoHeight />;
 }
+
+MetricsDataGrid.propTypes = {
+  event: PropTypes.string.isRequired,
+  dateRange: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
+};

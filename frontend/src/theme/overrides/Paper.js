@@ -8,7 +8,7 @@ export default function Paper(theme) {
       },
       styleOverrides: {
         root: {
-          backgroundImage: "none",
+          backgroundImage: 'none',
         },
       },
     },

@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 // form
-import { useFormContext, Controller } from "react-hook-form";
+import { useFormContext, Controller } from 'react-hook-form';
 // @mui
-import { Switch, FormControlLabel, FormHelperText } from "@mui/material";
+import { Switch, FormControlLabel, FormHelperText } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -20,15 +20,10 @@ export default function RHFSwitch({ name, helperText, ...other }) {
       control={control}
       render={({ field, fieldState: { error } }) => (
         <div>
-          <FormControlLabel
-            control={<Switch {...field} checked={field.value} />}
-            {...other}
-          />
+          <FormControlLabel control={<Switch {...field} checked={field.value} />} {...other} />
 
           {(!!error || helperText) && (
-            <FormHelperText error={!!error}>
-              {error ? error?.message : helperText}
-            </FormHelperText>
+            <FormHelperText error={!!error}>{error ? error?.message : helperText}</FormHelperText>
           )}
         </div>
       )}
