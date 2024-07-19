@@ -1,10 +1,10 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
+import React from "react";
+import Chart from "react-apexcharts";
 
 const bubbleChartData = {
   series: [
     {
-      name: 'Product1',
+      name: "Product1",
       data: [
         [100, 200, 20],
         [120, 100, 30],
@@ -17,12 +17,12 @@ const bubbleChartData = {
   ],
   options: {
     title: {
-      text: 'Product Sales Bubble Chart',
-      align: 'left',
+      text: "Product Sales Bubble Chart",
+      align: "left",
     },
     xaxis: {
       tickAmount: 12,
-      type: 'category',
+      type: "category",
     },
     yaxis: {
       max: 500,
@@ -33,7 +33,12 @@ const bubbleChartData = {
 export default function BubbleChartComponent() {
   return (
     <div id="chart">
-      <Chart options={bubbleChartData.options} series={bubbleChartData.series} type="bubble" height={350} />
+      <Chart
+        options={bubbleChartData.options}
+        series={bubbleChartData.series}
+        type="bubble"
+        height={350}
+      />
     </div>
   );
 }

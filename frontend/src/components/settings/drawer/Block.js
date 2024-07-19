@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // @mui
-import { Stack, Tooltip, Typography } from '@mui/material';
+import { Stack, Tooltip, Typography } from "@mui/material";
 //
-import Iconify from '../../iconify';
+import Iconify from "../../iconify";
 
 // ----------------------------------------------------------------------
 
@@ -22,10 +22,10 @@ export default function Block({ title, tooltip, children, sx, ...other }) {
         direction="row"
         alignItems="center"
         sx={{
-          color: 'text.secondary',
+          color: "text.secondary",
         }}
       >
-        <Typography variant="caption" sx={{ fontWeight: 'fontWeightMedium' }}>
+        <Typography variant="caption" sx={{ fontWeight: "fontWeightMedium" }}>
           {title}
         </Typography>
 

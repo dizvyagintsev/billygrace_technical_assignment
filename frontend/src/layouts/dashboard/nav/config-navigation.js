@@ -1,25 +1,28 @@
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from "../../../routes/paths";
 // components
-import SvgColor from '../../../components/svg-color';
+import SvgColor from "../../../components/svg-color";
 
 // ----------------------------------------------------------------------
 
 const icon = (name) => (
-  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
+  <SvgColor
+    src={`/assets/icons/navbar/${name}.svg`}
+    sx={{ width: 1, height: 1 }}
+  />
 );
 
 const ICONS = {
-  dashboard: icon('ic_dashboard'),
+  dashboard: icon("ic_dashboard"),
 };
 
 const navConfig = [
   // GENERAL
   // ----------------------------------------------------------------------
   {
-    subheader: 'general v4.3.0',
+    subheader: "general v4.3.0",
     items: [
-      { title: 'Dashboard', path: PATH_DASHBOARD.one, icon: ICONS.dashboard },
+      { title: "Dashboard", path: PATH_DASHBOARD.one, icon: ICONS.dashboard },
     ],
   },
 ];

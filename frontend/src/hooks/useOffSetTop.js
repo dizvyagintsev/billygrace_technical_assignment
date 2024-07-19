@@ -1,5 +1,5 @@
-import { useScroll } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useScroll } from "framer-motion";
+import { useState, useEffect } from "react";
 
 // ----------------------------------------------------------------------
 
@@ -10,7 +10,7 @@ export default function useOffSetTop(top = 100, options) {
 
   useEffect(
     () =>
-      scrollY.on('change', (scrollHeight) => {
+      scrollY.on("change", (scrollHeight) => {
         if (scrollHeight > top) {
           setValue(true);
         } else {

@@ -1,6 +1,6 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy } from "react";
 // components
-import LoadingScreen from '../components/loading-screen';
+import LoadingScreen from "../components/loading-screen";
 
 // ----------------------------------------------------------------------
 
@@ -13,6 +13,6 @@ const Loadable = (Component) => (props) =>
 
 // ----------------------------------------------------------------------
 
-export const LoginPage = Loadable(lazy(() => import('../pages/LoginPage')));
-export const Dashboard = Loadable(lazy(() => import('../pages/Dashboard')));
-export const Page404 = Loadable(lazy(() => import('../pages/Page404')));
+export const LoginPage = Loadable(lazy(() => import("../pages/LoginPage")));
+export const Dashboard = Loadable(lazy(() => import("../pages/Dashboard")));
+export const Page404 = Loadable(lazy(() => import("../pages/Page404")));

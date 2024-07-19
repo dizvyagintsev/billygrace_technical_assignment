@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // @mui
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 // hooks
-import useResponsive from '../../hooks/useResponsive';
+import useResponsive from "../../hooks/useResponsive";
 // config
-import { HEADER, NAV } from '../../config-global';
+import { HEADER, NAV } from "../../config-global";
 // components
-import { useSettingsContext } from '../../components/settings';
+import { useSettingsContext } from "../../components/settings";
 
 // ----------------------------------------------------------------------
 
@@ -20,11 +20,11 @@ Main.propTypes = {
 export default function Main({ children, sx, ...other }) {
   const { themeLayout } = useSettingsContext();
 
-  const isNavHorizontal = themeLayout === 'horizontal';
+  const isNavHorizontal = themeLayout === "horizontal";
 
-  const isNavMini = themeLayout === 'mini';
+  const isNavMini = themeLayout === "mini";
 
-  const isDesktop = useResponsive('up', 'lg');
+  const isDesktop = useResponsive("up", "lg");
 
   if (isNavHorizontal) {
     return (

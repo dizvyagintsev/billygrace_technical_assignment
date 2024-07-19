@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // @mui
-import { useTheme } from '@mui/material/styles';
-import { AppBar, Toolbar, Box, Link } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { AppBar, Toolbar, Box, Link } from "@mui/material";
 // config
-import { HEADER } from '../../config-global';
+import { HEADER } from "../../config-global";
 // utils
-import { bgBlur } from '../../utils/cssStyles';
+import { bgBlur } from "../../utils/cssStyles";
 // components
-import Logo from '../../components/logo';
+import Logo from "../../components/logo";
 
 // ----------------------------------------------------------------------
 
@@ -22,12 +22,12 @@ export default function Header({ isOffset }) {
     <AppBar color="transparent" sx={{ boxShadow: 0 }}>
       <Toolbar
         sx={{
-          justifyContent: 'space-between',
+          justifyContent: "space-between",
           height: {
             xs: HEADER.H_MOBILE,
             md: HEADER.H_MAIN_DESKTOP,
           },
-          transition: theme.transitions.create(['height', 'background-color'], {
+          transition: theme.transitions.create(["height", "background-color"], {
             easing: theme.transitions.easing.easeInOut,
             duration: theme.transitions.duration.shorter,
           }),
@@ -66,9 +66,9 @@ function Shadow({ sx, ...other }) {
         bottom: 0,
         height: 24,
         zIndex: -1,
-        m: 'auto',
-        borderRadius: '50%',
-        position: 'absolute',
+        m: "auto",
+        borderRadius: "50%",
+        position: "absolute",
         width: `calc(100% - 48px)`,
         boxShadow: (theme) => theme.customShadows.z8,
         ...sx,

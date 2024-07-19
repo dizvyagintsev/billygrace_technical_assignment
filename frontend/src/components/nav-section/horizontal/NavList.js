@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 // hooks
-import useActiveLink from '../../../hooks/useActiveLink';
+import useActiveLink from "../../../hooks/useActiveLink";
 //
-import { StyledPopover } from './styles';
-import NavItem from './NavItem';
+import { StyledPopover } from "./styles";
+import NavItem from "./NavItem";
 
 // ----------------------------------------------------------------------
 
@@ -32,15 +32,15 @@ export default function NavList({ data, depth, hasChild }) {
   }, [pathname]);
 
   useEffect(() => {
-    const appBarEl = Array.from(document.querySelectorAll('.MuiAppBar-root'));
+    const appBarEl = Array.from(document.querySelectorAll(".MuiAppBar-root"));
 
     // Reset styles when hover
     const styles = () => {
-      document.body.style.overflow = '';
-      document.body.style.padding = '';
+      document.body.style.overflow = "";
+      document.body.style.padding = "";
       // Apply for Window
       appBarEl.forEach((elem) => {
-        elem.style.padding = '';
+        elem.style.padding = "";
       });
     };
 
@@ -78,13 +78,13 @@ export default function NavList({ data, depth, hasChild }) {
           anchorEl={navRef.current}
           anchorOrigin={
             depth === 1
-              ? { vertical: 'bottom', horizontal: 'left' }
-              : { vertical: 'center', horizontal: 'right' }
+              ? { vertical: "bottom", horizontal: "left" }
+              : { vertical: "center", horizontal: "right" }
           }
           transformOrigin={
             depth === 1
-              ? { vertical: 'top', horizontal: 'left' }
-              : { vertical: 'center', horizontal: 'left' }
+              ? { vertical: "top", horizontal: "left" }
+              : { vertical: "center", horizontal: "left" }
           }
           PaperProps={{
             onMouseEnter: handleOpen,

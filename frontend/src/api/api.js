@@ -1,5 +1,5 @@
-import axios from 'axios';
-import {API_BASE_URL} from "../config-global";
+import axios from "axios";
+import { API_BASE_URL } from "../config-global";
 
 export const Event = Object.freeze({
   AD_CALLS: "ad_calls",
@@ -12,9 +12,8 @@ export const Event = Object.freeze({
   PRODUCT_VIEW: "product_view",
   SOLLICITATIE_VERZONDEN: "sollicitatie_verzonden",
   SUBSCRIBE: "subscribe",
-  WINKEL_AFSPRAAK: "winkel_afspraak"
+  WINKEL_AFSPRAAK: "winkel_afspraak",
 });
-
 
 export const getMetrics = async (customerId, event, startDate, endDate) => {
   try {
@@ -29,7 +28,7 @@ export const getMetrics = async (customerId, event, startDate, endDate) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Error fetching metrics:', error);
+    console.error("Error fetching metrics:", error);
     throw error;
   }
 };

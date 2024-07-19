@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import ThemeContrast from './ThemeContrast';
-import ThemeRtlLayout from './ThemeRtlLayout';
-import ThemeColorPresets from './ThemeColorPresets';
-import SettingsDrawer from './drawer';
+import PropTypes from "prop-types";
+import ThemeContrast from "./ThemeContrast";
+import ThemeRtlLayout from "./ThemeRtlLayout";
+import ThemeColorPresets from "./ThemeColorPresets";
+import SettingsDrawer from "./drawer";
 
 // ----------------------------------------------------------------------
 

@@ -1,8 +1,8 @@
 // routes
-import { PATH_DASHBOARD } from './routes/paths';
+import { PATH_DASHBOARD } from "./routes/paths";
 
 // API
-export const API_BASE_URL = 'http://localhost';
+export const API_BASE_URL = "http://localhost";
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
 export const PATH_AFTER_LOGIN = PATH_DASHBOARD.one;

@@ -1,1 +1,1 @@
-export { default } from './BadgeStatus';
+export { default } from "./BadgeStatus";

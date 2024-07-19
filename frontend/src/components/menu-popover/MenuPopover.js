@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // @mui
-import { Popover } from '@mui/material';
+import { Popover } from "@mui/material";
 //
-import getPosition from './getPosition';
-import { StyledArrow } from './styles';
+import getPosition from "./getPosition";
+import { StyledArrow } from "./styles";
 
 // ----------------------------------------------------------------------
 
@@ -13,25 +13,25 @@ MenuPopover.propTypes = {
   children: PropTypes.node,
   disabledArrow: PropTypes.bool,
   arrow: PropTypes.oneOf([
-    'top-left',
-    'top-center',
-    'top-right',
-    'bottom-left',
-    'bottom-center',
-    'bottom-right',
-    'left-top',
-    'left-center',
-    'left-bottom',
-    'right-top',
-    'right-center',
-    'right-bottom',
+    "top-left",
+    "top-center",
+    "top-right",
+    "bottom-left",
+    "bottom-center",
+    "bottom-right",
+    "left-top",
+    "left-center",
+    "left-bottom",
+    "right-top",
+    "right-center",
+    "right-bottom",
   ]),
 };
 
 export default function MenuPopover({
   open,
   children,
-  arrow = 'top-right',
+  arrow = "top-right",
   disabledArrow,
   sx,
   ...other
@@ -47,14 +47,14 @@ export default function MenuPopover({
       PaperProps={{
         sx: {
           p: 1,
-          width: 'auto',
-          overflow: 'inherit',
+          width: "auto",
+          overflow: "inherit",
           ...style,
-          '& .MuiMenuItem-root': {
+          "& .MuiMenuItem-root": {
             px: 1,
-            typography: 'body2',
+            typography: "body2",
             borderRadius: 0.75,
-            '& svg': { mr: 2, width: 20, height: 20, flexShrink: 0 },
+            "& svg": { mr: 2, width: 20, height: 20, flexShrink: 0 },
           },
           ...sx,
         },

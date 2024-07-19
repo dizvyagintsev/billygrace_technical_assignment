@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import merge from 'lodash/merge';
-import { useMemo } from 'react';
+import PropTypes from "prop-types";
+import merge from "lodash/merge";
+import { useMemo } from "react";
 // @mui
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 //
-import { useSettingsContext } from './SettingsContext';
+import { useSettingsContext } from "./SettingsContext";
 
 // ----------------------------------------------------------------------
 
@@ -18,16 +18,18 @@ export default function ThemeContrast({ children }) {
 
   const { themeContrast, themeMode } = useSettingsContext();
 
-  const isLight = themeMode === 'light';
+  const isLight = themeMode === "light";
 
-  const isContrastBold = themeContrast === 'bold';
+  const isContrastBold = themeContrast === "bold";
 
   const themeOptions = useMemo(
     () => ({
       palette: {
         background: {
           ...(isContrastBold && {
-            default: isLight ? outerTheme.palette.grey[100] : outerTheme.palette.grey[900],
+            default: isLight
+              ? outerTheme.palette.grey[100]
+              : outerTheme.palette.grey[900],
           }),
         },
       },

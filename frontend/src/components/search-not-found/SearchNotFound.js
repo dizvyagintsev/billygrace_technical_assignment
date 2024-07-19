@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // @mui
-import { Paper, Typography } from '@mui/material';
+import { Paper, Typography } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ export default function SearchNotFound({ query, sx, ...other }) {
   return query ? (
     <Paper
       sx={{
-        textAlign: 'center',
+        textAlign: "center",
         ...sx,
       }}
       {...other}

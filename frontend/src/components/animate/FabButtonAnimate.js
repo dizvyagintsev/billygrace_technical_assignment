@@ -1,32 +1,34 @@
-import PropTypes from 'prop-types';
-import { m } from 'framer-motion';
-import { forwardRef } from 'react';
+import PropTypes from "prop-types";
+import { m } from "framer-motion";
+import { forwardRef } from "react";
 // @mui
-import { Box, Fab } from '@mui/material';
+import { Box, Fab } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
-const FabButtonAnimate = forwardRef(({ size = 'large', children, sx, sxWrap, ...other }, ref) => (
-  <AnimateWrap size={size} sxWrap={sxWrap}>
-    <Fab ref={ref} size={size} sx={sx} {...other}>
-      {children}
-    </Fab>
-  </AnimateWrap>
-));
+const FabButtonAnimate = forwardRef(
+  ({ size = "large", children, sx, sxWrap, ...other }, ref) => (
+    <AnimateWrap size={size} sxWrap={sxWrap}>
+      <Fab ref={ref} size={size} sx={sx} {...other}>
+        {children}
+      </Fab>
+    </AnimateWrap>
+  )
+);
 
 FabButtonAnimate.propTypes = {
   children: PropTypes.node,
   color: PropTypes.oneOf([
-    'inherit',
-    'default',
-    'primary',
-    'secondary',
-    'info',
-    'success',
-    'warning',
-    'error',
+    "inherit",
+    "default",
+    "primary",
+    "secondary",
+    "info",
+    "success",
+    "warning",
+    "error",
   ]),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   sx: PropTypes.object,
   sxWrap: PropTypes.object,
 };
@@ -52,13 +54,13 @@ const varLarge = {
 
 AnimateWrap.propTypes = {
   children: PropTypes.node,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   sxWrap: PropTypes.object,
 };
 
 function AnimateWrap({ size, children, sxWrap }) {
-  const isSmall = size === 'small';
-  const isLarge = size === 'large';
+  const isSmall = size === "small";
+  const isLarge = size === "large";
 
   return (
     <Box
@@ -67,7 +69,7 @@ function AnimateWrap({ size, children, sxWrap }) {
       whileHover="hover"
       variants={(isSmall && varSmall) || (isLarge && varLarge) || varMedium}
       sx={{
-        display: 'inline-flex',
+        display: "inline-flex",
         ...sxWrap,
       }}
     >

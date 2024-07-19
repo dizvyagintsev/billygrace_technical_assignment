@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // form
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext, Controller } from "react-hook-form";
 // @mui
 import {
   Box,
@@ -13,7 +13,7 @@ import {
   FormControl,
   OutlinedInput,
   FormHelperText,
-} from '@mui/material';
+} from "@mui/material";
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +25,14 @@ RHFSelect.propTypes = {
   maxHeight: PropTypes.number,
 };
 
-export function RHFSelect({ name, native, children, helperText, maxHeight = 220, ...other }) {
+export function RHFSelect({
+  name,
+  native,
+  children,
+  helperText,
+  maxHeight = 220,
+  ...other
+}) {
   const { control } = useFormContext();
 
   return (
@@ -44,18 +51,19 @@ export function RHFSelect({ name, native, children, helperText, maxHeight = 220,
                 sx: {
                   ...(!native && {
                     px: 1,
-                    maxHeight: typeof maxHeight === 'number' ? maxHeight : 'unset',
-                    '& .MuiMenuItem-root': {
+                    maxHeight:
+                      typeof maxHeight === "number" ? maxHeight : "unset",
+                    "& .MuiMenuItem-root": {
                       px: 1,
                       borderRadius: 0.75,
-                      typography: 'body2',
-                      textTransform: 'capitalize',
+                      typography: "body2",
+                      textTransform: "capitalize",
                     },
                   }),
                 },
               },
             },
-            sx: { textTransform: 'capitalize' },
+            sx: { textTransform: "capitalize" },
           }}
           error={!!error}
           helperText={error ? error?.message : helperText}
@@ -95,11 +103,13 @@ export function RHFMultiSelect({
   const { control } = useFormContext();
 
   const renderValues = (selectedIds) => {
-    const selectedItems = options.filter((item) => selectedIds.includes(item.value));
+    const selectedItems = options.filter((item) =>
+      selectedIds.includes(item.value)
+    );
 
     if (!selectedItems.length && placeholder) {
       return (
-        <Box component="em" sx={{ color: 'text.disabled' }}>
+        <Box component="em" sx={{ color: "text.disabled" }}>
           {placeholder}
         </Box>
       );
@@ -107,7 +117,7 @@ export function RHFMultiSelect({
 
     if (chip) {
       return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
           {selectedItems.map((item) => (
             <Chip key={item.value} size="small" label={item.label} />
           ))}
@@ -115,7 +125,7 @@ export function RHFMultiSelect({
       );
     }
 
-    return selectedItems.map((item) => item.label).join(', ');
+    return selectedItems.map((item) => item.label).join(", ");
   };
 
   return (
@@ -148,7 +158,7 @@ export function RHFMultiSelect({
                   py: 1,
                   px: 2,
                   borderRadius: 0.75,
-                  typography: 'body2',
+                  typography: "body2",
                 }}
               >
                 <em> {placeholder} </em>
@@ -166,16 +176,18 @@ export function RHFMultiSelect({
                     py: 1,
                     px: 2,
                     borderRadius: 0.75,
-                    typography: 'body2',
+                    typography: "body2",
                     ...(selected && {
-                      fontWeight: 'fontWeightMedium',
+                      fontWeight: "fontWeightMedium",
                     }),
                     ...(checkbox && {
                       p: 0.25,
                     }),
                   }}
                 >
-                  {checkbox && <Checkbox disableRipple size="small" checked={selected} />}
+                  {checkbox && (
+                    <Checkbox disableRipple size="small" checked={selected} />
+                  )}
 
                   {option.label}
                 </MenuItem>
@@ -184,7 +196,9 @@ export function RHFMultiSelect({
           </Select>
 
           {(!!error || helperText) && (
-            <FormHelperText error={!!error}>{error ? error?.message : helperText}</FormHelperText>
+            <FormHelperText error={!!error}>
+              {error ? error?.message : helperText}
+            </FormHelperText>
           )}
         </FormControl>
       )}

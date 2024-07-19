@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { m } from 'framer-motion';
+import PropTypes from "prop-types";
+import { m } from "framer-motion";
 // @mui
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 //
-import { varFade } from './variants';
+import { varFade } from "./variants";
 
 // ----------------------------------------------------------------------
 
@@ -19,14 +19,14 @@ export default function TextAnimate({ text, variants, sx, ...other }) {
       component={m.div}
       sx={{
         m: 0,
-        typography: 'h1',
-        overflow: 'hidden',
-        display: 'inline-flex',
+        typography: "h1",
+        overflow: "hidden",
+        display: "inline-flex",
         ...sx,
       }}
       {...other}
     >
-      {text.split('').map((letter, index) => (
+      {text.split("").map((letter, index) => (
         <m.span key={index} variants={variants || varFade().inUp}>
           {letter}
         </m.span>

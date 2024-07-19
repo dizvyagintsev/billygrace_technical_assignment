@@ -1,20 +1,20 @@
-import { alpha } from '@mui/material';
+import { alpha } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
-const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'];
+const COLORS = ["primary", "secondary", "info", "success", "warning", "error"];
 
 export default function Progress(theme) {
   const rootStyle = (ownerState) => {
-    const bufferVariant = ownerState.variant === 'buffer';
+    const bufferVariant = ownerState.variant === "buffer";
 
     const defaultStyle = {
       borderRadius: 4,
-      '& .MuiLinearProgress-bar': {
+      "& .MuiLinearProgress-bar": {
         borderRadius: 4,
       },
       ...(bufferVariant && {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
       }),
     };
 

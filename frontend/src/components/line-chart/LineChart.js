@@ -1,5 +1,5 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
+import React from "react";
+import Chart from "react-apexcharts";
 
 const lineChartData = {
   series: [
@@ -10,11 +10,24 @@ const lineChartData = {
   ],
   options: {
     title: {
-      text: 'Monthly Sales',
-      align: 'left',
+      text: "Monthly Sales",
+      align: "left",
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
     },
   },
 };
@@ -22,7 +35,12 @@ const lineChartData = {
 export default function LineChartComponent() {
   return (
     <div id="chart">
-      <Chart options={lineChartData.options} series={lineChartData.series} type="line" height={350} />
+      <Chart
+        options={lineChartData.options}
+        series={lineChartData.series}
+        type="line"
+        height={350}
+      />
     </div>
   );
 }
