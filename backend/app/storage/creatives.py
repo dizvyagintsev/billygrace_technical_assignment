@@ -26,7 +26,7 @@ class DateRange:
     end: datetime.date
 
 
-@dataclass
+@dataclass(frozen=True)
 class RawMetrics:
     ad_copy: str
     spend: float

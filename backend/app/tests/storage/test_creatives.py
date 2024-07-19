@@ -9,7 +9,7 @@ class TestCreatives:
     @pytest.mark.integration
     @pytest.mark.asyncio
     async def test_fetch_metrics(self, creatives_storage: Creatives):
-        assert [
+        assert {
             metric
             async for metric in creatives_storage.fetch_metrics(
                 customer_name="23",
@@ -18,7 +18,7 @@ class TestCreatives:
                     start=datetime.date(1970, 1, 1), end=datetime.date(2025, 1, 31)
                 ),
             )
-        ] == [
+        } == {
             RawMetrics(
                 ad_copy="['Experience the Future Today! 🚀 The all-new ProTech X5 "
                 "Smartwatch – Fitness, calls, music, and more on your wrist. "
@@ -49,4 +49,4 @@ class TestCreatives:
                 sessions=111118.0,
                 roas=1380.9963099630995,
             ),
-        ]
+        }
