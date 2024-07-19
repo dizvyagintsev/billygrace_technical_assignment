@@ -2,7 +2,7 @@
 import { PATH_DASHBOARD } from "./routes/paths";
 
 // API
-export const API_BASE_URL = "http://localhost";
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
 export const PATH_AFTER_LOGIN = PATH_DASHBOARD.one;

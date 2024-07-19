@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Container, Typography, Box, Grid, Card } from "@mui/material";
 import { useSettingsContext } from "../components/settings";
@@ -12,25 +12,33 @@ import MetricsDataGrid from "../components/metrics-data-grid/MetricsDataGrid";
 export default function Dashboard() {
   const { themeStretch } = useSettingsContext();
 
-  const initialEvent = localStorage.getItem('selectedEvent') || Event.ORDER_COMPLETED;
-  const initialDateRange = JSON.parse(localStorage.getItem('dateRange')) || ['2024-05-15', '2024-07-05']
+  const initialEvent =
+    localStorage.getItem("selectedEvent") || Event.ORDER_COMPLETED;
+  const initialDateRange = JSON.parse(localStorage.getItem("dateRange")) || [
+    "2024-05-15",
+    "2024-07-05",
+  ];
 
   const [selectedEvent, setSelectedEvent] = useState(initialEvent);
-  const [dateRange, setDateRange] = useState([dayjs(initialDateRange[0]), dayjs(initialDateRange[1])]);
-
+  const [dateRange, setDateRange] = useState([
+    dayjs(initialDateRange[0]),
+    dayjs(initialDateRange[1]),
+  ]);
 
   useEffect(() => {
-    localStorage.setItem('selectedEvent', selectedEvent);
+    localStorage.setItem("selectedEvent", selectedEvent);
   }, [selectedEvent]);
 
   useEffect(() => {
-    localStorage.setItem('dateRange', JSON.stringify(dateRange.map(date => date.toISOString())));
+    localStorage.setItem(
+      "dateRange",
+      JSON.stringify(dateRange.map((date) => date.toISOString()))
+    );
   }, [dateRange]);
 
   const handleEventChange = (event) => {
     setSelectedEvent(event.target.value);
   };
-
 
   return (
     <>
@@ -71,7 +79,6 @@ export default function Dashboard() {
             </Grid>
           </Grid>
         </Box>
-
       </Container>
     </>
   );

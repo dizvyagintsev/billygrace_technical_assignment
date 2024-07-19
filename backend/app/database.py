@@ -1,10 +1,11 @@
+import os
 from typing import Optional
 
 import asyncpg
 
 
 def dsn_from_env() -> str:
-    return "postgresql://postgres:mysecretpassword@db/hu"
+    return os.environ["POSTGRES_DSN"]
 
 
 async def create_asyncpg_pool(dsn: Optional[str] = None) -> asyncpg.pool.Pool:

@@ -1,8 +1,7 @@
+FRONTEND_DIR := ./frontend
+
 deploy:
 	docker-compose up --build -d
-
-deploy_db:
-	docker-compose up --build -d db
 
 down:
 	docker-compose down
@@ -17,5 +16,23 @@ test_backend_integration:
 mypy:
 	mypy backend/app --config-file backend/mypy.ini
 
-ruff:
+ruff_check:
 	ruff check backend/app
+
+ruff_format:
+	ruff format backend/app
+
+jslint:
+	cd $(FRONTEND_DIR) && npx eslint --ext .js,.jsx .
+
+
+jslint-fix:
+	cd $(FRONTEND_DIR) && npx eslint --fix --ext .js,.jsx .
+
+
+jsprettier:
+	cd $(FRONTEND_DIR) && npx prettier --write 'src/**/*.{js,jsx}'
+
+
+jsprettier-check:
+	cd $(FRONTEND_DIR) && npx prettier --check 'src/**/*.{js,jsx}'
