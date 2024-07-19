@@ -5,8 +5,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Tooltip, ListItemText, Link } from '@mui/material';
 // locales
 import { useLocales } from '../../../locales';
-// auth
-import RoleBasedGuard from '../../../auth/RoleBasedGuard';
 //
 import Iconify from '../../iconify';
 import { StyledItem, StyledIcon } from './styles';
@@ -74,7 +72,7 @@ const NavItem = forwardRef(({ item, depth, open, active, isExternalLink, ...othe
     );
   };
 
-  return <RoleBasedGuard roles={roles}> {renderItem()} </RoleBasedGuard>;
+  return renderItem();
 });
 
 NavItem.propTypes = {

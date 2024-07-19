@@ -4,8 +4,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Tooltip, Link, ListItemText } from '@mui/material';
 // locales
 import { useLocales } from '../../../locales';
-// auth
-import RoleBasedGuard from '../../../auth/RoleBasedGuard';
 //
 import Iconify from '../../iconify';
 //
@@ -24,7 +22,7 @@ NavItem.propTypes = {
 export default function NavItem({ item, depth, open, active, isExternalLink, ...other }) {
   const { translate } = useLocales();
 
-  const { title, path, icon, info, children, disabled, caption, roles } = item;
+  const { title, path, icon, info, children, disabled, caption } = item;
 
   const subItem = depth !== 1;
 
@@ -96,5 +94,5 @@ export default function NavItem({ item, depth, open, active, isExternalLink, ...
     );
   };
 
-  return <RoleBasedGuard roles={roles}> {renderItem()} </RoleBasedGuard>;
+  return renderItem();
 }

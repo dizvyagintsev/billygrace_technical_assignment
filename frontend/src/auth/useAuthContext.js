@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 //
-import { AuthContext } from './JwtContext';
+import { AuthContext } from './LoginPasswordContext';
 
 // ----------------------------------------------------------------------
 
