@@ -1,24 +1,25 @@
 from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from app.database import create_asyncpg_pool
-from app.routers import creatives, account
+from app.dependencies import get_settings
+from app.routers import account, creatives
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
-    app.state.db_pool = await create_asyncpg_pool()
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    app.state.db_pool = await create_asyncpg_pool(get_settings())
     yield
     await app.state.db_pool.close()
 
 
-app = FastAPI(lifespan=lifespan, )
+app = FastAPI(lifespan=lifespan)
 
 origins = [
     "http://localhost:3000",
-    "http://localhost:3033",
 ]
 
 app.add_middleware(

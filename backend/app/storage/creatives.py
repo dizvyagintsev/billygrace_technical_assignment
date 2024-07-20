@@ -1,15 +1,9 @@
-import datetime
 from dataclasses import dataclass
-from enum import Enum
 from typing import AsyncIterator, List, Optional
 
 import asyncpg
 
-
-@dataclass
-class DateRange:
-    start: datetime.date
-    end: datetime.date
+from app.constants.common import DateRange
 
 
 @dataclass(frozen=True)
@@ -28,12 +22,11 @@ class FilterOptions:
     date_range: Optional[DateRange] = None
 
 
-
 class Creatives:
     def __init__(self, db: asyncpg.pool.Pool):
         self.db = db
 
-    async def get_filter_options(self, customer_name: str) -> FilterOptions:
+    async def fetch_filter_options(self, customer_name: str) -> FilterOptions:
         query = """
         SELECT ev, MIN(date_column), MAX(date_column)
         FROM creatives.pixel_event_integrated_data
@@ -46,13 +39,12 @@ class Creatives:
                 if not records:
                     return FilterOptions(events=[], date_range=None)
 
-                events = [record['ev'] for record in records]
-                start_date = records[0]['min']
-                end_date = records[0]['max']
-                return FilterOptions(events=events, date_range=DateRange(start_date, end_date))
-
-
-
+                events = [record["ev"] for record in records]
+                start_date = records[0]["min"]
+                end_date = records[0]["max"]
+                return FilterOptions(
+                    events=events, date_range=DateRange(start_date, end_date)
+                )
 
     async def fetch_metrics(
         self, customer_name: str, event: str, date_range: DateRange
@@ -98,5 +90,3 @@ GROUP BY ad_copy;
                     date_range.end,
                 ):
                     yield Metrics(**dict(record))
-
-

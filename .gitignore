@@ -123,3 +123,15 @@ sketch
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,react,yarn
+
+.env
+/frontend/playwright-report/
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/codeStyles/Project.xml
+/frontend/test-results/e2e-Dashboard-Tests-5-Dashboard-has-non-empty-datagrid-chromium/trace.zip
+/frontend/test-results/e2e-Dashboard-Tests-6-Dashboard-has-line-and-buble-charts-chromium/trace.zip
+/frontend/test-results/e2e-Login-Tests-1-On-first-load-we-see-login-form-chromium/trace.zip
+/frontend/test-results/e2e-Login-Tests-2-If-email-49f89-rrect-we-stay-on-login-page-chromium/trace.zip
+/frontend/test-results/e2e-Login-Tests-3-If-passw-44018-rrect-we-stay-on-login-page-chromium/trace.zip
+/frontend/test-results/e2e-Login-Tests-4-If-email-00ad3-ord-correct-dashboard-opens-chromium/trace.zip
+/yarn.lock

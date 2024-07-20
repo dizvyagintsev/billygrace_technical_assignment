@@ -1,0 +1,32 @@
+# docker-compose without db service to run in CI pipeline
+#  when database is already running in the pipeline
+
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_DSN=${POSTGRES_DSN}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_ALGORITHM=${JWT_ALGORITHM}
+      - JWT_TTL_MINUTES=${JWT_TTL_MINUTES}
+    command: ["fastapi", "run", "app/main.py", "--port", "8080"]
+    network_mode: host # This is needed to connect to the database running in the pipeline
+    container_name: backend
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+      args:
+        - API_BASE_URL=${API_BASE_URL}
+    ports:
+      - "3000:80"
+    container_name: frontend
+    depends_on:
+      - backend
+
+

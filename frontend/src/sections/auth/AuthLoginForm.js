@@ -49,7 +49,7 @@ export default function AuthLoginForm() {
 
       const message =
         error.response && error.response.status === 401
-          ? 'The email or password you entered is incorrect'
+          ? 'Invalid email or password'
           : 'Something went wrong. Please try again.';
 
       setError('afterSubmit', {

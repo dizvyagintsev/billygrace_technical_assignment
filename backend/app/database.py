@@ -1,18 +1,10 @@
-import os
-from typing import Optional
-
 import asyncpg
 
-
-def dsn_from_env() -> str:
-    return "postgresql://postgres:mysecretpassword@localhost:5432/hu"
-    return os.environ["POSTGRES_DSN"]
+from app.config import Settings
 
 
-async def create_asyncpg_pool(dsn: Optional[str] = None) -> asyncpg.pool.Pool:
-    dsn = dsn or dsn_from_env()
-
-    pool = await asyncpg.create_pool(dsn)
+async def create_asyncpg_pool(settings: Settings) -> asyncpg.pool.Pool:
+    pool = await asyncpg.create_pool(settings.postgres_dsn)
     async with pool.acquire() as connection:
         await connection.set_type_codec(
             "numeric", encoder=str, decoder=float, schema="pg_catalog", format="text"

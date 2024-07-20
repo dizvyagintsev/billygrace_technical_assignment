@@ -3,14 +3,32 @@ on: [push, pull_request]
 jobs:
   Checks:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      POSTGRES_DSN: postgresql://postgres:postgres@localhost:5432/postgres
+      API_BASE_URL: API_BASE_URL
+      FRONTEND_PORT: 3000
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip' # caching pip dependencies
+          cache: 'pip'
 
       - name: Install backend dependencies
         run: pip install -r backend/requirements.txt
@@ -19,27 +37,38 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
+          cache: 'yarn'
+          cache-dependency-path: frontend/yarn.lock
 
       - name: Install frontend dependencies
         working-directory: frontend
-        run: npm ci
+        run: yarn install
 
-      - name: Lint and Format Checks
-        run: |
-          make ruff_check
-          make jslint
-          make jsprettier-check
+      - name: Static code check Python
+        run: make python_check
+
+      - name: Static code check JavaScript
+        run: make jscheck
 
       - name: Backend unit tests
         run: make test_backend
 
-      - name: Start frontend, backend and database
-        run: make deploy
+      - name: Run Migrations
+        working-directory: backend
+        run: |
+          for f in db_migrations/*.sql; do
+            psql ${{ env.POSTGRES_DSN }} -f $f
+          done
 
       - name: Integration tests with database
         run: make test_backend_integration
+
+      - name: Start frontend and backend for e2e tests
+        env:
+          JWT_SECRET_KEY: dummy_secret
+          JWT_ALGORITHM: HS256
+          JWT_TTL_MINUTES: 30
+        run: docker-compose -f docker-compose-ci.yml up -d
 
       - name: Install Playwright Browsers
         working-directory: frontend
@@ -49,8 +78,13 @@ jobs:
         run: make test_e2e
 
       - name: Upload Playwright report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: frontend/playwright-report/
           retention-days: 30
+
+      - name: Log backend logs on Failure
+        if: failure()
+        run: docker logs backend

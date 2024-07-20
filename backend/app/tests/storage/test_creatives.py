@@ -2,18 +2,19 @@ import datetime
 
 import pytest
 
-from app.storage.creatives import Creatives, Event, DateRange, Metrics
+from app.constants.common import DateRange
+from app.storage.creatives import Creatives, Metrics
 
 
 class TestCreatives:
     @pytest.mark.integration
     @pytest.mark.asyncio
-    async def test_fetch_metrics(self, creatives_storage: Creatives):
+    async def test_fetch_metrics(self, creatives_storage: Creatives) -> None:
         assert {
             metric
             async for metric in creatives_storage.fetch_metrics(
                 customer_name="23",
-                event=Event.ORDER_COMPLETED,
+                event="order_completed",
                 date_range=DateRange(
                     start=datetime.date(1970, 1, 1), end=datetime.date(2025, 1, 31)
                 ),

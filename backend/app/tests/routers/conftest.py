@@ -5,5 +5,5 @@ from app.main import app
 
 
 @pytest.fixture(scope="session")
-def client():
+def client() -> TestClient:
     return TestClient(app)

@@ -8,40 +8,19 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
---
--- Name: hu; Type: DATABASE; Schema: -; Owner: billygrace
---
-
-CREATE role billygrace with login;
-
-ALTER DATABASE hu OWNER TO billygrace;
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
 
 --
--- Name: creatives; Type: SCHEMA; Schema: -; Owner: billygrace
+-- Name: creatives; Type: SCHEMA; Schema: -;
 --
 
 CREATE SCHEMA creatives;
-
-
-ALTER SCHEMA creatives OWNER TO billygrace;
 
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: dim_combined_creative; Type: TABLE; Schema: creatives; Owner: billygrace
+-- Name: dim_combined_creative; Type: TABLE; Schema: creatives;
 --
 
 CREATE TABLE creatives.dim_combined_creative (
@@ -60,11 +39,8 @@ CREATE TABLE creatives.dim_combined_creative (
     copy_id character varying
 );
 
-
-ALTER TABLE creatives.dim_combined_creative OWNER TO billygrace;
-
 --
--- Name: pixel_event_integrated_data; Type: TABLE; Schema: creatives; Owner: billygrace
+-- Name: pixel_event_integrated_data; Type: TABLE; Schema: creatives;
 --
 
 CREATE TABLE creatives.pixel_event_integrated_data (
@@ -141,7 +117,3 @@ CREATE TABLE creatives.pixel_event_integrated_data (
     pre_spend_profit_attr_window_7 double precision,
     pre_spend_profit_attr_window_30 double precision
 );
-
-
-ALTER TABLE creatives.pixel_event_integrated_data OWNER TO billygrace;
-

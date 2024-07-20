@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = '/';
 const CORRECT_EMAIL = 'demo@minimals.cc';
 const CORRECT_PASSWORD = 'demo1234';
 

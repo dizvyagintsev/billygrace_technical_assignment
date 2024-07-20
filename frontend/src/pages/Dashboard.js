@@ -8,6 +8,7 @@ import BubbleChartComponent from '../components/buble-chart/BubleChart';
 import LineChartComponent from '../components/line-chart/LineChart';
 import Filters from '../components/filters/Filters';
 import MetricsDataGrid from '../components/metrics-data-grid/MetricsDataGrid';
+import { API_BASE_URL } from '../config-global';
 
 export default function Dashboard() {
   const { themeStretch } = useSettingsContext();
@@ -37,7 +38,7 @@ export default function Dashboard() {
     async (resetFilters = false) => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:8000/api/customer/23/creatives/filter-options'
+          `${API_BASE_URL}/api/customer/23/creatives/filter-options`
         );
         setError(null);
         const { data } = response;
@@ -127,9 +128,11 @@ export default function Dashboard() {
 
         {error && <Alert severity="error">{error}</Alert>}
 
-        <Card>
-          <MetricsDataGrid event={selectedEvent} dateRange={dateRange} />
-        </Card>
+        {selectedEvent && dateRange && (
+          <Card>
+            <MetricsDataGrid event={selectedEvent} dateRange={dateRange} />
+          </Card>
+        )}
 
         <Box sx={{ mt: 3 }}>
           <Grid container spacing={2}>
