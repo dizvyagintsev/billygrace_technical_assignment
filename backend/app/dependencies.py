@@ -5,7 +5,7 @@ import asyncpg
 from fastapi import Depends, Request
 
 from app.config import Settings
-from app.storage.creatives import Creatives
+from app.repository.creatives.creatives import Creatives
 
 
 async def get_db_pool(request: Request) -> AsyncIterator[asyncpg.Pool]:
@@ -16,7 +16,9 @@ async def get_db_pool(request: Request) -> AsyncIterator[asyncpg.Pool]:
         pass  # Pool is managed by startup and shutdown events
 
 
-async def get_creatives_storage(db: asyncpg.Pool = Depends(get_db_pool)) -> Creatives:
+async def get_creatives_repository(
+    db: asyncpg.Pool = Depends(get_db_pool),
+) -> Creatives:
     return Creatives(db)
 
 

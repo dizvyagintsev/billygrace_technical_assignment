@@ -2,8 +2,8 @@ import datetime
 
 import pytest
 
-from app.constants.common import DateRange
-from app.storage.creatives import Creatives, Metrics
+from app.repository.creatives.creatives import Creatives
+from app.repository.creatives.schemas import DateRange, Metrics
 
 
 class TestCreatives:

@@ -6,12 +6,13 @@ from starlette.middleware.cors import CORSMiddleware
 
 from app.database import create_asyncpg_pool
 from app.dependencies import get_settings
-from app.routers import account, creatives
+from app.routers.account.account import router as account_router
+from app.routers.creatives.creatives import router as creatives_router
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    app.state.db_pool = await create_asyncpg_pool(get_settings())
+    app.state.db_pool = await create_asyncpg_pool(get_settings().postgres_dsn)
     yield
     await app.state.db_pool.close()
 
@@ -30,5 +31,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(creatives.router)
-app.include_router(account.router)
+app.include_router(account_router)
+app.include_router(creatives_router)

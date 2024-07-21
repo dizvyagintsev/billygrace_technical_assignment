@@ -10,7 +10,7 @@ from jose import JWTError, jwt
 
 from app.config import Settings
 from app.dependencies import get_settings
-from app.models.account import LoginRequest, LoginResponse, User
+from app.routers.account.models import LoginRequest, LoginResponse, User
 
 router = APIRouter(
     prefix="/api/account",

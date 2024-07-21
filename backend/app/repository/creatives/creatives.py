@@ -1,25 +1,8 @@
-from dataclasses import dataclass
-from typing import AsyncIterator, List, Optional
+from typing import AsyncIterator
 
 import asyncpg
 
-from app.constants.common import DateRange
-
-
-@dataclass(frozen=True)
-class Metrics:
-    ad_copy: str
-    spend: float
-    clicks: float
-    impressions: float
-    sessions: float
-    roas: float
-
-
-@dataclass
-class FilterOptions:
-    events: List[str]
-    date_range: Optional[DateRange] = None
+from app.repository.creatives.schemas import DateRange, FilterOptions, Metrics
 
 
 class Creatives:

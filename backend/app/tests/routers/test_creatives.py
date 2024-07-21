@@ -5,13 +5,12 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 from starlette.testclient import TestClient
 
-from app.constants.common import DateRange
-from app.dependencies import get_creatives_storage
+from app.dependencies import get_creatives_repository
 from app.main import app
-from app.storage.creatives import FilterOptions, Metrics
+from app.repository.creatives.schemas import DateRange, FilterOptions, Metrics
 
 mocked_creatives_storage = MagicMock()
-app.dependency_overrides[get_creatives_storage] = lambda: mocked_creatives_storage
+app.dependency_overrides[get_creatives_repository] = lambda: mocked_creatives_storage
 
 
 @pytest.mark.parametrize(

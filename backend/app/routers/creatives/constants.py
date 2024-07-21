@@ -1,8 +1,13 @@
 import datetime
 from dataclasses import dataclass
 
-from app.constants.common import DateRange
-from app.models.creatives import Column
+from app.routers.creatives.models import Column
+
+
+@dataclass(frozen=True)
+class DateRange:
+    start: datetime.date
+    end: datetime.date
 
 
 @dataclass(frozen=True)
