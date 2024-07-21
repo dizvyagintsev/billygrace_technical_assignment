@@ -18,7 +18,7 @@ jobs:
           --health-retries 5
     env:
       POSTGRES_DSN: postgresql://postgres:postgres@localhost:5432/postgres
-      API_BASE_URL: API_BASE_URL
+      API_BASE_URL: http://localhost:8080
       FRONTEND_PORT: 3000
 
     steps:
