@@ -1,6 +1,7 @@
 FRONTEND_DIR := ./frontend
 
 deploy:
+	./create_env.sh
 	docker-compose up --build -d
 
 deploy_backend:

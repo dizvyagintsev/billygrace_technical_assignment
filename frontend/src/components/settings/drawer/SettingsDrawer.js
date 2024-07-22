@@ -116,10 +116,6 @@ export default function SettingsDrawer() {
             <ContrastOptions />
           </Block>
 
-          <Block title="Direction">
-            <DirectionOptions />
-          </Block>
-
           <Block title="Layout">
             <LayoutOptions />
           </Block>

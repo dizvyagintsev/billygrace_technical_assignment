@@ -1,5 +1,5 @@
 // @mui
-import { enUS, frFR, zhCN, viVN, arSA } from '@mui/material/locale';
+import { enUS, frFR, zhCN, viVN } from '@mui/material/locale';
 
 // PLEASE REMOVE `LOCAL STORAGE` WHEN YOU CHANGE SETTINGS.
 // ----------------------------------------------------------------------
@@ -28,12 +28,6 @@ export const allLangs = [
     value: 'cn',
     systemValue: zhCN,
     icon: '/assets/icons/flags/ic_flag_cn.svg',
-  },
-  {
-    label: 'Arabic (Sudan)',
-    value: 'ar',
-    systemValue: arSA,
-    icon: '/assets/icons/flags/ic_flag_sa.svg',
   },
 ];
 
