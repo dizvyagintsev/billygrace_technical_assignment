@@ -14,10 +14,14 @@ load_dotenv(env_path)
 
 @pytest_asyncio.fixture()
 async def creatives_repository() -> AsyncGenerator[Creatives, None]:
-    user = os.environ["POSTGRES_USER"]
-    password = os.environ["POSTGRES_PASSWORD"]
-    host = os.environ["POSTGRES_HOST"]
-    db = os.environ["POSTGRES_DB"]
+    dsn = os.getenv("POSTGRES_DSN")
 
-    dsn = f"postgresql://{user}:{password}@{host}/{db}"
+    if not dsn:
+        user = os.environ["POSTGRES_USER"]
+        password = os.environ["POSTGRES_PASSWORD"]
+        host = os.environ["POSTGRES_HOST"]
+        db = os.environ["POSTGRES_DB"]
+
+        dsn = f"postgresql://{user}:{password}@{host}/{db}"
+
     yield Creatives(await create_asyncpg_pool(dsn))
