@@ -130,7 +130,7 @@ available**
       - This information would be stored in Amazon Redshift or Google BigQuery for further analysis. Inserting data into the database with such high frequency could be a problem, so I would use a message queue like Amazon SQS or Google Pub/Sub to buffer the data and then process it in batches.
       - Another option is to store events in Amazon S3 or Google Cloud Storage and then use AWS Glue or Google Dataflow to process the data and load it into the data warehouse.
 
-   4. ETL and Data Analysis:
+   4. ETL and Data Analysis (If event data is stored in S3):
       - AWS Glue or Google Dataflow could be used for ETL processing (transforming and loading the data into the data warehouse).
       - Amazon Athena could be used for ad-hoc analysis on data stored in S3.
 
