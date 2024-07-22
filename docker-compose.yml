@@ -61,10 +61,14 @@ services:
       bash -c "
       export PGPASSWORD=$POSTGRES_PASSWORD;
       until pg_isready -h db -U $POSTGRES_USER; do echo waiting for db; sleep 2; done;
-      for f in /docker-entrypoint-initdb.d/*.sql; do
-        echo running $$f;
-        psql -h db -U $POSTGRES_USER -d $POSTGRES_DB -f $$f;
-      done"
+      if [ ! -f /docker-entrypoint-initdb.d/.migrations_applied ]; then
+        for f in /docker-entrypoint-initdb.d/*.sql; do
+          echo running $$f;
+          psql -h db -U $POSTGRES_USER -d $POSTGRES_DB -f $$f;
+        done
+      else
+          echo migrations already applied;
+      fi"
     container_name: migrations
 
 volumes:
