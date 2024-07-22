@@ -84,7 +84,7 @@ export default function Dashboard() {
 
   // Save date range to localStorage
   useEffect(() => {
-    if (dateRange && dateRange[0].isValid() && dateRange[1].isValid()) {
+    if (dateRange && dateRange[0]?.isValid() && dateRange[1]?.isValid()) {
       localStorage.setItem(
         'dateRange',
         JSON.stringify(dateRange.map((date) => date.toISOString()))
@@ -99,6 +99,9 @@ export default function Dashboard() {
   const handleRefreshData = () => {
     fetchFilterOptions(true);
   };
+
+  const isFilterValid =
+    selectedEvent && dateRange && dateRange[0]?.isValid() && dateRange[1]?.isValid();
 
   return (
     <>
@@ -128,10 +131,12 @@ export default function Dashboard() {
 
         {error && <Alert severity="error">{error}</Alert>}
 
-        {selectedEvent && dateRange && (
+        {isFilterValid ? (
           <Card>
             <MetricsDataGrid event={selectedEvent} dateRange={dateRange} />
           </Card>
+        ) : (
+          <Alert severity="warning">Select valid date range</Alert>
         )}
 
         <Box sx={{ mt: 3 }}>

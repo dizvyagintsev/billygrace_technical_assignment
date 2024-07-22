@@ -9,10 +9,10 @@ from app.repository.creatives.schemas import DateRange, Metrics
 class TestCreatives:
     @pytest.mark.integration
     @pytest.mark.asyncio
-    async def test_fetch_metrics(self, creatives_storage: Creatives) -> None:
+    async def test_fetch_metrics(self, creatives_repository: Creatives) -> None:
         assert {
             metric
-            async for metric in creatives_storage.fetch_metrics(
+            async for metric in creatives_repository.fetch_metrics(
                 customer_name="23",
                 event="order_completed",
                 date_range=DateRange(

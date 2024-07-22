@@ -41,13 +41,13 @@ async def get_creative_metrics(
     end_date: datetime.date,
     currency_sign: str = "€",
     round_to: int = 2,
-    creatives_storage: Creatives = Depends(get_creatives_repository),
+    creative_repository: Creatives = Depends(get_creatives_repository),
 ) -> MetricsDataGridConfig:
     columns = METRICS_DATA_GRID_COLUMNS
 
     metrics = [
         metrics
-        async for metrics in creatives_storage.fetch_metrics(
+        async for metrics in creative_repository.fetch_metrics(
             customer_name=customer,
             event=event,
             date_range=DateRange(start_date, end_date),
@@ -72,9 +72,9 @@ class FilterOptionsWithDefaults(BaseModel):
 @router.get("/filter-options", response_model=Optional[FilterOptionsWithDefaults])
 async def get_filter_options(
     customer: str,
-    creatives_storage: Creatives = Depends(get_creatives_repository),
+    creatives_repository: Creatives = Depends(get_creatives_repository),
 ) -> FilterOptionsWithDefaults:
-    options = await creatives_storage.fetch_filter_options(customer_name=customer)
+    options = await creatives_repository.fetch_filter_options(customer_name=customer)
 
     if not options.events or not options.date_range:
         return FilterOptionsWithDefaults(

@@ -9,8 +9,8 @@ from app.dependencies import get_creatives_repository
 from app.main import app
 from app.repository.creatives.schemas import DateRange, FilterOptions, Metrics
 
-mocked_creatives_storage = MagicMock()
-app.dependency_overrides[get_creatives_repository] = lambda: mocked_creatives_storage
+mocked_creatives_repository = MagicMock()
+app.dependency_overrides[get_creatives_repository] = lambda: mocked_creatives_repository
 
 
 @pytest.mark.parametrize(
@@ -76,7 +76,7 @@ def test_get_creative_metrics(
     fetched_metrics: List[Metrics],
     expected_response: List[Dict],
 ) -> None:
-    mocked_creatives_storage.fetch_metrics.return_value.__aiter__.return_value = (
+    mocked_creatives_repository.fetch_metrics.return_value.__aiter__.return_value = (
         fetched_metrics
     )
 
@@ -162,7 +162,7 @@ def test_get_creative_metrics(
         start=datetime.strptime(start_date, "%Y-%m-%d").date(),
         end=datetime.strptime(end_date, "%Y-%m-%d").date(),
     )
-    mocked_creatives_storage.fetch_metrics.assert_called_once_with(
+    mocked_creatives_repository.fetch_metrics.assert_called_once_with(
         customer_name=customer,
         event=event,
         date_range=date_range,
@@ -218,7 +218,7 @@ def test_get_filter_options(
     fetched_filter_option: FilterOptions,
     expected_response: Dict,
 ) -> None:
-    mocked_creatives_storage.fetch_filter_options = AsyncMock(
+    mocked_creatives_repository.fetch_filter_options = AsyncMock(
         return_value=fetched_filter_option
     )
 
@@ -229,6 +229,6 @@ def test_get_filter_options(
     assert response.status_code == expected_status_code
     assert response.json() == expected_response
 
-    mocked_creatives_storage.fetch_filter_options.assert_awaited_once_with(
+    mocked_creatives_repository.fetch_filter_options.assert_awaited_once_with(
         customer_name=customer
     )

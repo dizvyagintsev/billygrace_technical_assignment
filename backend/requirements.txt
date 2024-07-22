@@ -7,3 +7,4 @@ mypy==1.10.1
 python-jose==3.3.0
 pre-commit==3.7.1
 pydantic-settings==2.3.4
+python-dotenv==1.0.1
