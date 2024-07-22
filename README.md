@@ -4,12 +4,8 @@
 
 ### 1. Running the project
 
-Before running the project you need to add `.env` file in the root directory. Use `.env.example` as a template. Don't 
-forget to set POSTGRES_PASSWORD and JWT_SECRET_KEY (login and password are actually hardcoded on backend but because
-JWT auth was already implemented on frontend I decided to implement endpoints it uses but without hashing and storing 
-passwords in database).
-
-After that you can run the project with the following command:
+You can run the project with the following command (it will generate a `.env` file with default values and random 
+secrets):
 
 ```bash
 make deploy
