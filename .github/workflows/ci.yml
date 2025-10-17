@@ -68,7 +68,7 @@ jobs:
           JWT_SECRET_KEY: dummy_secret
           JWT_ALGORITHM: HS256
           JWT_TTL_MINUTES: 30
-        run: docker-compose -f docker-compose-ci.yml up -d
+        run: docker compose -f docker-compose-ci.yml up -d
 
       - name: Install Playwright Browsers
         working-directory: frontend
